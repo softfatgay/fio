@@ -27,11 +27,25 @@ const TextStyle t16black = TextStyle(
   fontWeight: fontWeightMedium,
 );
 
+const TextStyle t18black = TextStyle(
+  color: textBlack,
+  fontSize: 18,
+  decoration: TextDecoration.none,
+  fontWeight: fontWeightMedium,
+);
+
 const TextStyle t20black = TextStyle(
   color: textBlack,
   fontSize: 20,
   decoration: TextDecoration.none,
   fontWeight: fontWeightMedium,
+);
+
+const TextStyle t20blackBold = TextStyle(
+  color: textBlack,
+  fontSize: 20,
+  decoration: TextDecoration.none,
+  fontWeight: FontWeight.bold,
 );
 
 const TextStyle t12grey = TextStyle(
@@ -41,3 +55,9 @@ const TextStyle t12grey = TextStyle(
   fontWeight: fontWeightMedium,
 );
 
+const TextStyle t18white = TextStyle(
+  color: textWhite,
+  fontSize: 18,
+  decoration: TextDecoration.none,
+  fontWeight: fontWeightMedium,
+);

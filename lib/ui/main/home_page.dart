@@ -1,13 +1,15 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/ui/component/app_bar.dart';
+import 'package:untitled/router/Router.dart';
 import 'package:untitled/ui/component/fonts.dart';
 import 'package:untitled/ui/component/search_widget.dart';
 import 'package:untitled/ui/constant/colors.dart';
 import 'package:untitled/ui/constant/screen_margin.dart';
+import 'package:untitled/ui/main/component/cart_widget.dart';
+import 'package:untitled/ui/main/model/itemListItem.dart';
 
+import 'model/categoryItemListItem.dart';
 import 'model/kingkongModel.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,7 +19,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
 
 
   @override
@@ -37,7 +40,9 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
 
   void _getData() async {
     final dio = Dio();
-    var timestamp = DateTime.now().millisecondsSinceEpoch;
+    var timestamp = DateTime
+        .now()
+        .millisecondsSinceEpoch;
     var response = await dio.get(
         'https://m.you.163.com/item/list.json?https://m.you.163.com/item/list.json?__timestamp=$timestamp&categoryId=1010000&');
     setState(() {
@@ -80,50 +85,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: item.itemList!.map<Widget>((itemItem) {
-                      return Container(
-                        padding: EdgeInsets.only(
-                            left: item.itemList!.indexOf(itemItem) == 0
-                                ? ScreenMargin.TOSCREEN
-                                : ScreenMargin.TOSCREEN / 2,
-                            right: item.itemList!.indexOf(itemItem) ==
-                                    item.itemList!.length - 1
-                                ? ScreenMargin.TOSCREEN
-                                : 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _netImg(itemItem.scenePicUrl!),
-                            const SizedBox(height: 4),
-                            ConstrainedBox(
-                              constraints:
-                                  const BoxConstraints(maxWidth: 115),
-                              child: Text(
-                                '${itemItem.name}',
-                                style: t12black,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  '\$${itemItem.counterPrice}',
-                                  style: t14black,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  '\$${itemItem.retailPrice}',
-                                  style: const TextStyle(
-                                      fontSize: 14,
-                                      color: textLightGrey,
-                                      decoration: TextDecoration.lineThrough,
-                                      fontFamily: 'DINAlternateBold'),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
+                      return _buildItem(item, itemItem);
                     }).toList(),
                   ),
                 )
@@ -143,12 +105,13 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
           color: const Color(0xFFE5E5E5),
           borderRadius: BorderRadius.circular(3)),
       child: CachedNetworkImage(
-        imageBuilder: (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(3),
-            image: DecorationImage(image: imageProvider, fit: BoxFit.fill),
-          ),
-        ),
+        imageBuilder: (context, imageProvider) =>
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(3),
+                image: DecorationImage(image: imageProvider, fit: BoxFit.fill),
+              ),
+            ),
         imageUrl: url,
       ),
     );
@@ -164,53 +127,22 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
         child: Row(
           children: [
             Expanded(
-              child: SearchWidget(controller: _searchTextController,searchHeight: appBarHeight),
-            ),
-            Container(
-              width: appBarHeight,
-              height: appBarHeight,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: backGrey,
-                borderRadius: BorderRadius.circular(20)
-              ),
-              margin: const EdgeInsets.only(left: 16),
               child: GestureDetector(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/main/ic_tab_sell_active.png',
-                        width: 22,
-                        height: 22,
-                      ),
-                      Positioned(
-                        top: 2,
-                        right:2,
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: 16,
-                          width: 16,
-                          decoration: BoxDecoration(
-                              color: appRed,
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: textWhite, width: 1)),
-                          child: Text(
-                            '2',
-                            style:const TextStyle(fontSize: 9, color: textWhite, height: 1.1),
-                          ),
-                        ),),
-                    ],
-                  ),
+                child: Container(
+                  height: appBarHeight,
+                  padding: const EdgeInsets.only(left: 12),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                      color: backGrey,
+                      borderRadius: BorderRadius.circular(4)),
+                  child: const Icon(Icons.search),
                 ),
                 onTap: () {
-
+                  Routers.push(context, Routers.searchIndexPage);
                 },
               ),
             ),
+            const CartWidget(count: 0),
           ],
         ),
       ),
@@ -218,4 +150,63 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
     );
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _scrollController.dispose();
+    _searchTextController.dispose();
+    super.dispose();
+  }
+
+  _buildItem(CategoryItemListItem item, ItemListItem itemItem) {
+    return GestureDetector(
+      child: Container(
+        padding: EdgeInsets.only(
+            left: item.itemList!.indexOf(itemItem) == 0
+                ? ScreenMargin.TOSCREEN
+                : ScreenMargin.TOSCREEN / 2,
+            right: item.itemList!.indexOf(itemItem) ==
+                item.itemList!.length - 1
+                ? ScreenMargin.TOSCREEN
+                : 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _netImg(itemItem.scenePicUrl!),
+            const SizedBox(height: 4),
+            ConstrainedBox(
+              constraints:
+              const BoxConstraints(maxWidth: 115),
+              child: Text(
+                '${itemItem.name}',
+                style: t12black,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Row(
+              children: [
+                Text(
+                  '\$${itemItem.counterPrice}',
+                  style: t14black,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  '\$${itemItem.retailPrice}',
+                  style: const TextStyle(
+                      fontSize: 14,
+                      color: textLightGrey,
+                      decoration: TextDecoration.lineThrough,
+                      fontFamily: 'DINAlternateBold'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+      onTap: () {
+        Routers.push(context, Routers.goodDetailPage, {'id': itemItem.id.toString()});
+      },
+    );
+  }
 }

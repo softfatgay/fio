@@ -8,6 +8,7 @@ const Color appGrey = Color(0xFF999999);
 const Color appShadow = Color(0xFF999999);
 const Color appRed = Color(0xFFFF0000);
 const Color backGrey = Color(0xFFF1F3F8);
+const Color backColor = Color(0xFFF1F3F8);
 
 
 

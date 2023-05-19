@@ -1,4 +1,5 @@
 import 'package:untitled/main.dart';
+import 'package:untitled/ui/main/detail/good_detail_page.dart';
 import 'package:untitled/ui/main/main_page.dart';
 import 'package:untitled/ui/register/register_verify_phone_page.dart';
 import 'package:untitled/ui/register/register_psw_page.dart';
@@ -7,6 +8,8 @@ import 'package:untitled/ui/register/register_verify_send_code_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/main/search_index_page.dart';
+
 class Routers {
   static const String homePage = '/';
   static const String mainPage = '/MainPage';
@@ -14,6 +17,8 @@ class Routers {
   static const String registerPswPage = '/registerPswPage';
   static const String registerVerifyEmail = '/registerVerifyEmail';
   static const String registerVerifyPhone = '/registerVerifyPhone';
+  static const String searchIndexPage = '/searchIndexPage';
+  static const String goodDetailPage = '/goodDetailPage';
 
   static Map<String, Function> routes = {
     ///首页
@@ -23,8 +28,9 @@ class Routers {
     registerPswPage: (context, {params}) => RegisterPswPage(params: params),
     registerVerifyEmail: (context, {params}) =>
         RegisterVerifyEmail(params: params),
-    registerVerifyPhone: (context, {params}) =>
-        RegisterVerifyPhone(params: params),
+    registerVerifyPhone: (context, {params}) => RegisterVerifyPhone(params: params),
+    searchIndexPage: (context, {params}) => SearchIndexPage(),
+    goodDetailPage: (context, {params}) => GoodDetailPage(params: params),
   };
 
   ///组件跳转
