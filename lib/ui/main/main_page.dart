@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:untitled/ui/main/profile/profile_page.dart';
 
 import '../constant/colors.dart';
 import 'home_page.dart';
@@ -17,6 +18,7 @@ class _MainPageState extends State<MainPage> {
   final _pageController = PageController();
   int _tabIndex = 0;
   final _homeNew = HomePage();
+  final _profilePage = ProfilePage();
 
   final List<_Item> itemNames = [];
   var _cartNum = '0';
@@ -67,7 +69,7 @@ class _MainPageState extends State<MainPage> {
           _homeNew,
           _homeNew,
           _homeNew,
-          _homeNew,
+          _profilePage,
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

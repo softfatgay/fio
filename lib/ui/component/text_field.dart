@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:untitled/ui/constant/screen_margin.dart';
 
@@ -55,7 +54,8 @@ class PreTextTextField extends TextField {
           textAlign: TextAlign.start,
           inputFormatters: [],
           decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
               fillColor: Colors.white,
               hintStyle: t12grey,
               disabledBorder: _disabledBorder(),
@@ -64,7 +64,8 @@ class PreTextTextField extends TextField {
               prefixIcon: prefixText.isNotEmpty
                   ? Container(
                       width: 50,
-                      padding: const EdgeInsets.only(left: ScreenMargin.TOSCREEN),
+                      padding:
+                          const EdgeInsets.only(left: ScreenMargin.TOSCREEN),
                       alignment: Alignment.centerLeft,
                       child: Text(
                         '$prefixText',
@@ -106,13 +107,14 @@ class PswTextField extends TextField {
           textAlign: TextAlign.start,
           inputFormatters: [],
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
             fillColor: Colors.white,
             hintStyle: t12grey,
             disabledBorder: _disabledBorder(),
             enabledBorder: _disabledBorder(),
             focusedBorder: _disabledBorder(),
-            hintText: '$hintText',
+            hintText: hintText,
             counterText: '',
             suffixIcon: IconButton(
               icon: Icon(

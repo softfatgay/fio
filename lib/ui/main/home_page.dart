@@ -69,26 +69,28 @@ class _HomePageState extends State<HomePage>
         children: categoryItemList!.map<Widget>((item) {
           return Container(
             margin: const EdgeInsets.only(top: 20),
-            width: double.infinity,
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.only(left: ScreenMargin.TOSCREEN),
+                  padding: EdgeInsets.symmetric(horizontal: 16),
                   child: Text(
                     '${item.category!.name}',
                     style: t16black,
                   ),
                 ),
                 const SizedBox(height: 10),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: item.itemList!.map<Widget>((itemItem) {
-                      return _buildItem(item, itemItem);
-                    }).toList(),
-                  ),
-                )
+                _buildHorItem(item),
+                // SingleChildScrollView(
+                //   scrollDirection: Axis.horizontal,
+                //   child: Row(
+                //     children: item.itemList!.map<Widget>((itemItem) {
+                //       return _buildItem(item, itemItem);
+                //     }).toList(),
+                //   ),
+                // )
               ],
             ),
           );
@@ -97,10 +99,20 @@ class _HomePageState extends State<HomePage>
     );
   }
 
+  _buildHorItem(CategoryItemListItem item){
+    var sublist = item.itemList!.sublist(0,3);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: sublist.map<Widget>((itemItem) {
+        return _buildItem(item, itemItem);
+      }).toList(),
+    );
+  }
+
   _netImg(String url) {
     return Container(
       height: 115,
-      width: 115,
+      width: (MediaQuery.of(context).size.width-48)/3,
       decoration: BoxDecoration(
           color: const Color(0xFFE5E5E5),
           borderRadius: BorderRadius.circular(3)),
@@ -161,14 +173,14 @@ class _HomePageState extends State<HomePage>
   _buildItem(CategoryItemListItem item, ItemListItem itemItem) {
     return GestureDetector(
       child: Container(
-        padding: EdgeInsets.only(
-            left: item.itemList!.indexOf(itemItem) == 0
-                ? ScreenMargin.TOSCREEN
-                : ScreenMargin.TOSCREEN / 2,
-            right: item.itemList!.indexOf(itemItem) ==
-                item.itemList!.length - 1
-                ? ScreenMargin.TOSCREEN
-                : 0),
+        // padding: EdgeInsets.only(
+        //     left: item.itemList!.indexOf(itemItem) == 0
+        //         ? ScreenMargin.TOSCREEN
+        //         : ScreenMargin.TOSCREEN / 2,
+        //     right: item.itemList!.indexOf(itemItem) ==
+        //         item.itemList!.length - 1
+        //         ? ScreenMargin.TOSCREEN
+        //         : 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

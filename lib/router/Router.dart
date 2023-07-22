@@ -1,6 +1,7 @@
 import 'package:untitled/main.dart';
 import 'package:untitled/ui/main/detail/good_detail_page.dart';
 import 'package:untitled/ui/main/main_page.dart';
+import 'package:untitled/ui/registerPhone/login_page.dart';
 import 'package:untitled/ui/register/register_verify_phone_page.dart';
 import 'package:untitled/ui/register/register_psw_page.dart';
 import 'package:untitled/ui/register/register_user_name.dart';
@@ -9,16 +10,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/main/search_index_page.dart';
+import '../ui/register/regster_main_page.dart';
+import '../ui/registerPhone/register_set_password.dart';
+import '../ui/registerPhone/register_create_username.dart';
+import '../ui/registerPhone/register_phone_page.dart';
 
 class Routers {
   static const String homePage = '/';
   static const String mainPage = '/MainPage';
+  static const String registerMainPage = '/registerMainPage';
   static const String registerUserNamePage = '/registerPage';
   static const String registerPswPage = '/registerPswPage';
   static const String registerVerifyEmail = '/registerVerifyEmail';
   static const String registerVerifyPhone = '/registerVerifyPhone';
   static const String searchIndexPage = '/searchIndexPage';
   static const String goodDetailPage = '/goodDetailPage';
+  static const String loginPage = '/loginPage';
+  static const String registerPhonePage = '/registerPhonePage';
+  static const String registerCreateUserName = '/registerCreateUserName';
+  static const String registerSetPassWord = '/registerSetPassWord';
 
   static Map<String, Function> routes = {
     ///首页
@@ -29,8 +39,13 @@ class Routers {
     registerVerifyEmail: (context, {params}) =>
         RegisterVerifyEmail(params: params),
     registerVerifyPhone: (context, {params}) => RegisterVerifyPhone(params: params),
-    searchIndexPage: (context, {params}) => SearchIndexPage(),
+    searchIndexPage: (context, {params}) => const SearchIndexPage(),
     goodDetailPage: (context, {params}) => GoodDetailPage(params: params),
+    loginPage: (context, {params}) => const LoginPage(),
+    registerPhonePage: (context, {params}) => RegisterPhonePage(params: params),
+    registerCreateUserName: (context, {params}) => const RegisterCreateUserName(),
+    registerSetPassWord: (context, {params}) => const RegisterSetPassWord(),
+    registerMainPage: (context, {params}) => const RegisterMainPage(),
   };
 
   ///组件跳转
