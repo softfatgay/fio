@@ -76,7 +76,7 @@ class _RegisterPhonePageState extends State<RegisterPhonePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                NormalButton(
+                PreIconNormalButton(
                   text: 'Verify code',
                   onPressed: () {
                     Routers.push(context, Routers.registerCreateUserName);

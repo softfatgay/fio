@@ -65,7 +65,7 @@ class _RegisterSetPassWordState extends State<RegisterSetPassWord> {
                 ),
               ],
             )),
-            NormalButton(
+            PreIconNormalButton(
                 text: 'Continue',
                 onPressed: (){}),
           ],

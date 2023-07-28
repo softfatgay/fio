@@ -1,10 +1,13 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:untitled/ui/main/control/control_page.dart';
+import 'package:untitled/ui/main/home/new_home_page.dart';
 import 'package:untitled/ui/main/profile/profile_page.dart';
 
 import '../constant/colors.dart';
 import 'home_page.dart';
+import 'inbox/inbox_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -17,7 +20,9 @@ class _MainPageState extends State<MainPage> {
 
   final _pageController = PageController();
   int _tabIndex = 0;
-  final _homeNew = HomePage();
+  final _homeNew = HomeNewPage();
+  final _controlPage = ControlPanelPage();
+  final _inboxPage = InboxPage();
   final _profilePage = ProfilePage();
 
   final List<_Item> itemNames = [];
@@ -29,10 +34,10 @@ class _MainPageState extends State<MainPage> {
     if (itemNames.isEmpty) {
       itemNames.add(_Item('Home', 'assets/main/ic_tab_home_active.png',
           'assets/main/ic_tab_home_active.png',_activeColor,_normalColor));
-      itemNames.add(_Item('Discover', 'assets/main/ic_tab_discover_active.png',
+      itemNames.add(_Item('Control panel', 'assets/main/ic_tab_discover_active.png',
           'assets/main/ic_tab_discover_active.png',_activeColor,_normalColor));
-      itemNames.add(_Item('Sell', 'assets/main/ic_tab_sell_active.png',
-          'assets/main/ic_tab_sell_active.png',_activeColor,_normalColor));
+      // itemNames.add(_Item('Sell', 'assets/main/ic_tab_sell_active.png',
+      //     'assets/main/ic_tab_sell_active.png',_activeColor,_normalColor));
       itemNames.add(_Item('In box', 'assets/main/ic_tab_inbox_active.png',
           'assets/main/ic_tab_inbox_active.png',_activeColor,_normalColor,
           cartNum: _cartNum));
@@ -66,9 +71,8 @@ class _MainPageState extends State<MainPage> {
         physics:const NeverScrollableScrollPhysics(),
         children: [
           _homeNew,
-          _homeNew,
-          _homeNew,
-          _homeNew,
+          _controlPage,
+          _inboxPage,
           _profilePage,
         ],
       ),

@@ -45,7 +45,7 @@ class _RegisterCreateUserNameState extends State<RegisterCreateUserName> {
                   ],
                 ),
               ),
-              NormalButton(
+              PreIconNormalButton(
                 text: 'Continue',
                 onPressed: (){
                   Routers.push(context, Routers.registerSetPassWord);

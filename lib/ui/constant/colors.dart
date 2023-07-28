@@ -18,6 +18,7 @@ const Color textBlack = Color(0xFF172026);
 const Color textGrey = Color(0xFF999999);
 const Color textLightGrey = Color(0xFFBBBBBB);
 const Color textBlue = Color(0xFF1778F2);
+const Color textRed = Color(0xFFF50042);
 
 
 const Color lineColor = Color(0xFFEAEAEA);
