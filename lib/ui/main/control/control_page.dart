@@ -53,6 +53,8 @@ class _ControlPanelPageState extends State<ControlPanelPage> {
               onPressed: () {
                 if (e == 'Solicitudes') {
                   Routers.push(context, Routers.solicitudesPage);
+                }else{
+                  Routers.push(context, Routers.addnoticePage);
                 }
               }),
           if(_data.indexOf(e) != _data.length - 1) Container(margin:EdgeInsets.only(left: ScreenMargin.TOSCREEN),height: 1,color: backColor,)

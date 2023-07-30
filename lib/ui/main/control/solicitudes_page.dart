@@ -41,7 +41,9 @@ class _SolicitudesPageState extends State<SolicitudesPage>
       ),
       body: _buildContent(),
       floatingActionButton: FloatingActionButton.small(
-        onPressed: () {},
+        onPressed: () {
+          Routers.push(context, Routers.solicitudesResumePage);
+        },
         child: Icon(
           Icons.add,
           color: appWhite,
@@ -101,7 +103,7 @@ class _SolicitudesPageState extends State<SolicitudesPage>
                                     (e) => GestureDetector(
                                       child: _buildItem(e),
                                       onTap: () {
-                                        Routers.push(context, Routers.solicitudesResumePage);
+
                                       },
                                     ),
                                   )

@@ -9,6 +9,8 @@ import 'package:untitled/ui/register/register_verify_send_code_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/main/control/ImagePicker.dart';
+import '../ui/main/control/add_notice_page.dart';
 import '../ui/main/control/solicitudes_page.dart';
 import '../ui/main/control/solicitudes_resume_page.dart';
 import '../ui/main/profile/configuration_page.dart';
@@ -37,6 +39,8 @@ class Routers {
   static const String notificationPage = '/notificationPage';
   static const String solicitudesPage = '/solicitudesPage';
   static const String solicitudesResumePage = '/solicitudesResumePage';
+  static const String myHomePagePicker = '/myHomePagePicker';
+  static const String addnoticePage = '/addnoticePage';
 
   static Map<String, Function> routes = {
     ///首页
@@ -59,7 +63,9 @@ class Routers {
     configurationPage: (context, {params}) => const ConfigurationPage(),
     notificationPage: (context, {params}) => const NotificationPage(),
     solicitudesPage: (context, {params}) => const SolicitudesPage(),
+    myHomePagePicker: (context, {params}) => const TestPagePicker(),
     solicitudesResumePage: (context, {params}) => SolicitudesResumePage(params: params),
+    addnoticePage: (context, {params}) => AddoticePage(),
   };
 
   ///组件跳转
