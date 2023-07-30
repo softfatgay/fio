@@ -13,7 +13,7 @@ class LabelView extends MaterialButton {
       Color color = appWhite,
       String icon = '',
       double height = 64,
-      double elevation = 0.4})
+      double elevation = 0.5})
       : super(
           minWidth: double.maxFinite,
           height: height,

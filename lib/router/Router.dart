@@ -9,6 +9,10 @@ import 'package:untitled/ui/register/register_verify_send_code_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/main/control/solicitudes_page.dart';
+import '../ui/main/control/solicitudes_resume_page.dart';
+import '../ui/main/profile/configuration_page.dart';
+import '../ui/main/profile/notification_page.dart';
 import '../ui/main/search_index_page.dart';
 import '../ui/register/regster_main_page.dart';
 import '../ui/registerPhone/register_set_password.dart';
@@ -29,6 +33,10 @@ class Routers {
   static const String registerPhonePage = '/registerPhonePage';
   static const String registerCreateUserName = '/registerCreateUserName';
   static const String registerSetPassWord = '/registerSetPassWord';
+  static const String configurationPage = '/configurationPage';
+  static const String notificationPage = '/notificationPage';
+  static const String solicitudesPage = '/solicitudesPage';
+  static const String solicitudesResumePage = '/solicitudesResumePage';
 
   static Map<String, Function> routes = {
     ///首页
@@ -38,14 +46,20 @@ class Routers {
     registerPswPage: (context, {params}) => RegisterPswPage(params: params),
     registerVerifyEmail: (context, {params}) =>
         RegisterVerifyEmail(params: params),
-    registerVerifyPhone: (context, {params}) => RegisterVerifyPhone(params: params),
+    registerVerifyPhone: (context, {params}) =>
+        RegisterVerifyPhone(params: params),
     searchIndexPage: (context, {params}) => const SearchIndexPage(),
     goodDetailPage: (context, {params}) => GoodDetailPage(params: params),
     loginPage: (context, {params}) => const LoginPage(),
     registerPhonePage: (context, {params}) => RegisterPhonePage(params: params),
-    registerCreateUserName: (context, {params}) => const RegisterCreateUserName(),
+    registerCreateUserName: (context, {params}) =>
+        const RegisterCreateUserName(),
     registerSetPassWord: (context, {params}) => const RegisterSetPassWord(),
     registerMainPage: (context, {params}) => const RegisterMainPage(),
+    configurationPage: (context, {params}) => const ConfigurationPage(),
+    notificationPage: (context, {params}) => const NotificationPage(),
+    solicitudesPage: (context, {params}) => const SolicitudesPage(),
+    solicitudesResumePage: (context, {params}) => SolicitudesResumePage(params: params),
   };
 
   ///组件跳转

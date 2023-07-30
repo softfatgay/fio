@@ -22,7 +22,7 @@ class SearchIndexWidget extends StatefulWidget {
 
   SearchIndexWidget(
       {this.textValue = '',
-      this.searchHeight = 45.0,
+      this.searchHeight = 42.0,
       this.paddingV = 8,
       required this.controller,
       this.hintText,
@@ -56,44 +56,55 @@ class _SearchGoodsState extends State<SearchIndexWidget> {
     //   throw Exception('TextEditingController 没有初始化');
     // }
     return Container(
-      decoration: BoxDecoration(
-          color: backGrey, borderRadius: BorderRadius.circular(4)),
-      height: widget.searchHeight,
-      child: TextField(
-        style: t14black,
-        decoration: InputDecoration(
-          hintText: widget.hintText ?? '',
-          border: InputBorder.none,
-          prefixIcon: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon:const Icon(Icons.arrow_back),
+      child: Row(
+        children: [
+          IconButton(
+            padding: EdgeInsets.all(0),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios)),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.only(left: 16),
+              decoration: BoxDecoration(
+                color: appWhite,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              height: widget.searchHeight,
+              child: TextField(
+                style: t14black,
+                decoration: InputDecoration(
+                  hintText: widget.hintText ?? '',
+                  border: InputBorder.none,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _controller.clear();
+                        widget.onValueChangedCallBack!('');
+                      });
+                    },
+                    icon: const Icon(Icons.clear),
+                  ),
+                ),
+                textInputAction: TextInputAction.search,
+                onSubmitted: (text) {
+                  //回车按钮
+                  setState(() {
+                    if (widget.onSubmitted != null) {
+                      widget.onSubmitted!(text);
+                    }
+                  });
+                },
+                maxLines: 1,
+                onChanged: (textValue) {
+                  _startTimer(textValue);
+                },
+                controller: _controller,
+              ),
+            ),
           ),
-          suffixIcon: IconButton(
-            onPressed: () {
-              setState(() {
-                _controller.clear();
-                widget.onValueChangedCallBack!('');
-              });
-            },
-            icon:const Icon(Icons.clear),
-          ),
-        ),
-        textInputAction: TextInputAction.search,
-        onSubmitted: (text) {
-          //回车按钮
-          setState(() {
-            if (widget.onSubmitted != null) {
-              widget.onSubmitted!(text);
-            }
-          });
-        },
-        maxLines: 1,
-        onChanged: (textValue) {
-          _startTimer(textValue);
-        },
-        controller: _controller,
+        ],
       ),
     );
   }

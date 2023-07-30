@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../constant/colors.dart';
 
-const FontWeight fontWeightMedium = FontWeight.w500;
+const FontWeight fontWeightMedium = FontWeight.w400;
 
 const TextStyle t12black = TextStyle(
   color: textBlack,
@@ -32,6 +32,13 @@ const TextStyle t16black = TextStyle(
   fontSize: 16,
   decoration: TextDecoration.none,
   fontWeight: fontWeightMedium,
+);
+
+const TextStyle t16blackMin = TextStyle(
+  color: textBlack,
+  fontSize: 16,
+  decoration: TextDecoration.none,
+  fontWeight: FontWeight.w300,
 );
 
 const TextStyle t18black = TextStyle(
@@ -107,6 +114,13 @@ const TextStyle t16Blue = TextStyle(
 const TextStyle t12Red = TextStyle(
   color: textRed,
   fontSize: 12,
+  decoration: TextDecoration.none,
+  fontWeight: fontWeightMedium,
+);
+
+const TextStyle t16Red = TextStyle(
+  color: textRed,
+  fontSize: 16,
   decoration: TextDecoration.none,
   fontWeight: fontWeightMedium,
 );

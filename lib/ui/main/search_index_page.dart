@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/ui/component/fonts.dart';
 import 'package:untitled/ui/component/search_index_widget.dart';
+import 'package:untitled/ui/constant/colors.dart';
 import 'package:untitled/ui/constant/screen_margin.dart';
 
 class SearchIndexPage extends StatefulWidget {
@@ -12,7 +13,6 @@ class SearchIndexPage extends StatefulWidget {
 }
 
 class _SearchIndexPageState extends State<SearchIndexPage> {
-
   final _searchTextController = TextEditingController();
   var _textValue = '';
   final _scrollController = ScrollController();
@@ -43,8 +43,10 @@ class _SearchIndexPageState extends State<SearchIndexPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: backColor,
           automaticallyImplyLeading: false,
-          title: SearchIndexWidget(controller: _searchTextController,
+          title: SearchIndexWidget(
+            controller: _searchTextController,
             onValueChangedCallBack: (searchText) {
               setState(() {
                 _textValue = searchText;
@@ -52,7 +54,8 @@ class _SearchIndexPageState extends State<SearchIndexPage> {
               if (_textValue.isNotEmpty) {
                 _searchKey();
               }
-            },)),
+            },
+          )),
       body: _buildContent(),
     );
   }
@@ -60,8 +63,7 @@ class _SearchIndexPageState extends State<SearchIndexPage> {
   _buildContent() {
     return SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: ScreenMargin.TOSCREEN),
-        child: _textValue.isEmpty ? _buildHistory() : _showResult()
-    );
+        child: _textValue.isEmpty ? _buildHistory() : _showResult());
   }
 
   _buildHistory() {
@@ -69,7 +71,11 @@ class _SearchIndexPageState extends State<SearchIndexPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          child: Text('Search history', style: t16black,),
+          padding: const EdgeInsets.symmetric(vertical: ScreenMargin.TOSCREEN),
+          child: Text(
+            'Search history',
+            style: t16black,
+          ),
         )
       ],
     );
@@ -77,7 +83,7 @@ class _SearchIndexPageState extends State<SearchIndexPage> {
 
   _showResult() {
     return Container(
-      child:SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: _searchTipsData.map<Widget>((item) {
             return Container(
@@ -98,7 +104,10 @@ class _SearchIndexPageState extends State<SearchIndexPage> {
                     ),
                     Container(
                       padding: EdgeInsets.only(right: 10),
-                      child: Icon(Icons.arrow_forward_ios,size: 16,),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                      ),
                     )
                   ],
                 ));

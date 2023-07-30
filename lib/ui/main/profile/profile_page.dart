@@ -40,13 +40,9 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   _loginAppBar() {
-    return AppBar(leading: Container(), actions: [
-      IconButton(
-          onPressed: () {
-            _showProfile();
-          },
-          icon: Icon(Icons.menu))
-    ]);
+    return AppBar(
+        leading: Container(),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.menu))]);
   }
 
   _logoutView() {
@@ -86,7 +82,11 @@ class _ProfilePageState extends State<ProfilePage> {
           _profile(),
           const SizedBox(height: 25),
           Container(height: 10, color: Color(0xFFF1F3F8)),
-          LabelView(text: 'Personal data', onPressed: () {}),
+          LabelView(
+              text: 'Personal data',
+              onPressed: () {
+                _showProfile();
+              }),
           LabelView(text: 'Users common 2', onPressed: () {}),
           LabelView(text: 'Notas', elevation: 0.0, onPressed: () {}),
           Container(height: 10, color: Color(0xFFF1F3F8)),
@@ -126,7 +126,11 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           ),
           const SizedBox(height: 25),
-          NormalButton(text: 'Solicitar Edicion De Datos', onPressed: () {}),
+          NormalButton(
+              text: 'Solicitar Edicion De Datos',
+              onPressed: () {
+                Routers.push(context, Routers.configurationPage);
+              }),
         ],
       ),
     );
@@ -158,18 +162,50 @@ class _ProfilePageState extends State<ProfilePage> {
                         icon: Icon(Icons.close))
                   ],
                 ),
-                const SizedBox(height: 24,),
-                Text('D.N.I.',style: t16grey,),
-                Text('33888333',style: t16black,),
-                const SizedBox(height: 24,),
-                Text('Fecha de Nacimiento',style: t16grey,),
-                Text('12/02/1970',style: t16black,),
-                const SizedBox(height: 24,),
-                Text('Sexo',style: t16grey,),
-                Text('Mujer',style: t16black,),
-                const SizedBox(height: 24,),
-                Text('Comunidad',style: t16grey,),
-                Text('No data',style: t16black,),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  'D.N.I.',
+                  style: t16grey,
+                ),
+                Text(
+                  '33888333',
+                  style: t16black,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  'Fecha de Nacimiento',
+                  style: t16grey,
+                ),
+                Text(
+                  '12/02/1970',
+                  style: t16black,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  'Sexo',
+                  style: t16grey,
+                ),
+                Text(
+                  'Mujer',
+                  style: t16black,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  'Comunidad',
+                  style: t16grey,
+                ),
+                Text(
+                  'No data',
+                  style: t16black,
+                ),
               ],
             ),
           );

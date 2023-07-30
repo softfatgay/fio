@@ -4,18 +4,21 @@ import 'package:untitled/ui/constant/colors.dart';
 import 'fonts.dart';
 
 class NormalButton extends MaterialButton {
-  NormalButton(
-      {super.key,
-      required super.onPressed,
-      String text = '',
-      Color color = appWhite})
-      : super(
+  NormalButton({
+    super.key,
+    required super.onPressed,
+    String text = '',
+    Color color = appBlue,
+    Color textColor = textWhite,
+    double elevation = 2,
+  }) : super(
           minWidth: double.maxFinite,
           height: 46,
-          color: appBlue,
+          color: color,
+          elevation: elevation,
           child: Text(
             text,
-            style: const TextStyle(color: textWhite),
+            style: TextStyle(color: textColor),
           ),
           shape: const RoundedRectangleBorder(
             //边框圆角

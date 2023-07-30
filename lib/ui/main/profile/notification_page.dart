@@ -1,62 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:untitled/router/Router.dart';
-import 'package:untitled/ui/component/fonts.dart';
-import 'package:untitled/ui/constant/colors.dart';
-import 'package:untitled/ui/constant/screen_margin.dart';
-import 'package:untitled/ui/main/home/component/home_app_bar.dart';
 
-class HomeNewPage extends StatefulWidget {
-  const HomeNewPage({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:untitled/ui/constant/screen_margin.dart';
+
+import '../../component/fonts.dart';
+import '../../constant/colors.dart';
+
+class NotificationPage extends StatefulWidget {
+  const NotificationPage({Key? key}) : super(key: key);
 
   @override
-  State<HomeNewPage> createState() => _HomeNewPageState();
+  State<NotificationPage> createState() => _NotificationPageState();
 }
 
-class _HomeNewPageState extends State<HomeNewPage> {
-  var _data = ["", "", ""];
+class _NotificationPageState extends State<NotificationPage> {
+
+  var _data = ["Añadir noticia", "Solicitudes", "Solicitudes"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backColor,
-      appBar: _buildAppBar(),
+      appBar: AppBar(
+        backgroundColor: backColor,
+        title: Text(
+          'Notifications',
+          style: t18black,
+        ),
+        titleSpacing: 0,
+      ),
       body: _buildContent(),
     );
-  }
-
-  _buildAppBar() {
-    return buildAppBar(() {
-      Routers.push(context, Routers.notificationPage);
-    }, () {
-      Routers.push(context, Routers.searchIndexPage);
-    });
   }
 
   _buildContent() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: ScreenMargin.TOSCREEN),
-      width: double.maxFinite,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: ScreenMargin.TOSCREEN,
-          ),
-          Text(
-            'Recent news',
-            style: t20black,
-          ),
-          SizedBox(
-            height: ScreenMargin.TOSCREEN,
-          ),
-          SingleChildScrollView(
-            child: Column(
-              children: _data.map<Widget>((e) {
-                return _buildItem(e);
-              }).toList(),
-            ),
-          )
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: _data.map<Widget>((e) => _buildItem(e)).toList(),
+        ),
       ),
     );
   }

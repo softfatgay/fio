@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/router/Router.dart';
 import 'package:untitled/ui/component/fonts.dart';
 import 'package:untitled/ui/component/label_widget.dart';
 import 'package:untitled/ui/constant/colors.dart';
@@ -42,8 +43,6 @@ class _ControlPanelPageState extends State<ControlPanelPage> {
   }
 
   _buildItem(String e) {
-    print('-----------------${_data.indexOf(e)}');
-    print('-----------------${_data.length - 1}');
     return Container(
       color: appWhite,
       child: Column(
@@ -51,7 +50,11 @@ class _ControlPanelPageState extends State<ControlPanelPage> {
           LabelView(
               elevation: 0,
               text: e,
-              onPressed: () {}),
+              onPressed: () {
+                if (e == 'Solicitudes') {
+                  Routers.push(context, Routers.solicitudesPage);
+                }
+              }),
           if(_data.indexOf(e) != _data.length - 1) Container(margin:EdgeInsets.only(left: ScreenMargin.TOSCREEN),height: 1,color: backColor,)
         ],
       ),
